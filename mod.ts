@@ -54,7 +54,7 @@ export const logisticsosClient = async (
           const solverResData = await solverHandlerMutation(validData, apiType, apiKey);
           return solverResData;
         } catch(e) {
-          console.log(e, "Error to make an Request to solver service")
+          // console.log(e, "Error to make an Request to solver service")
         }
       }
       return validData;
