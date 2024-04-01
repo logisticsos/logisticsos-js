@@ -1,10 +1,10 @@
 # logisticsos-js
 
-Javascript client wrapper for (LogisticsOS API)[https://www.logisticsos.com/docs?version=3], currently available just for `deno` runtime.
+Javascript client wrapper for (https://www.logisticsos.com/docs?version=3)[LogisticsOS API], currently available just for `deno` runtime.
 
 ## Install
 
-deno url: `https://deno.land/x/logisticsos_js@0.0.2`
+deno url: `https://deno.land/x/logisticsos_js`
 
 ### How to use
 ### Helpers

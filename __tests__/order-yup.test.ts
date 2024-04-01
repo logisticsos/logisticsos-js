@@ -1,9 +1,7 @@
-// import * as Yup from "yup";
-// import { orderVRPScheme } from "../src/models/shared/order";
-
-describe('Example test', () => {
-    it('should pass', () => {
+describe('Order VRP', () => {
+    it('only required fields', () => {
         expect(true).toBe(true);
     });
 });
+
 export {};
