@@ -46,7 +46,7 @@ export const logisticsosClient = async (
         try {
           validData = await schemaTSP.validate(data, { strict: true });
         } catch (e) {
-          console.log(e, "Error validation logisticsosClient OnDemand apiType");
+          // console.log(e, "Error validation logisticsosClient OnDemand apiType");
         }
       }
       if(validData) {
