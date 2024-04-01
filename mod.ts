@@ -1,56 +1,80 @@
-import { secondary } from "./secondary.ts";
-import * as depsModules from "./deps.ts";
-import { Application } from "https://deno.land/x/oak/mod.ts";
-import * as makeProcessData from "https://deno.land/x/makedata@0.0.1/main.ts";
-import { logisticsosClient } from "./src/index.ts";
-import { load } from "https://deno.land/std@0.221.0/dotenv/mod.ts";
-// import { schemaVrp } from "logisticsos-js/src/models/vrp.yup";
-// import { solverHandlerMutation } from "./api.ts";
-// import { logisticsosClient } from "./src/index.ts";
-// import data1 from "../fixtures/vrp-v3/1.json";
+import { schemaVrp } from "./models/vrp.yup.ts";
+import { schemaOnDemand } from "./models/ondemand.yup.ts";
+import { schemaTSP } from "./models/tsp.yup.ts";
+import { solverHandlerMutation } from './api.ts';
 
-const env = await load();
-const api_key_solver = env["LOS_TEST_API_KEY"];
+export const logisticsosClient = async (
+  apiKey: string,
+) => {
+  if (!apiKey) {
+    return {
+      message: "apiKey is required!",
+    };
+  }
 
-const solverVrpExampleData = await import("./fixtures/vrp-v3/1.json", {
-  with: { type: "json" },
-});
-const solverOndemandExampleData = await import("./fixtures/ondemand-v3/abco-1.json", {
-  with: { type: "json" },
-});
-const solverOTspExampleData = await import("./fixtures/tsp-v3/1.json", {
-  with: { type: "json" },
-});
-// const env = Deno.env.toObject();
-// console.log("env:", env);
+  return {
+    optimize: async (data: any, apiType: string) => {
+      if (!apiType) {
+        return {
+          message: "Not defined solver api type",
+        };
+      }
 
-(async () => {
-  console.log(api_key_solver);
-  // console.log(solverOndemandExampleData, "solverExampleData")
-  // add initialization of logisticsosClient, with key validation;
-  const initLogisticsos = await logisticsosClient(api_key_solver);
-  const optimizationRes = await initLogisticsos.optimize(
-    // solverOndemandExampleData.default,
-    solverOTspExampleData.default,
-    "tsp"
-  );
+      if (!data) {
+        return {
+          message: "Not provided data",
+        };
+      }
 
-  console.log(
-    JSON.stringify(optimizationRes),
-    "initLogisticsos",
-  );
-})();
-// (async () => {
-//   console.log(await add(1, 2));
-//   console.log(depsModules, "yup");
-//   console.log(makeProcessData.default, "makeProcessData.default")
-//   console.log(await makeProcessData.default("https://api.sampleapis.com/beers/ale"), "Application");
+      let validData = null;
 
-//   // const result = await logisticsosClient("hello", {data1}, "vrp");
-//   // const result = await logisticsosClient("hello", { hello: "hello"}, "vrp");
-// })();
-// Learn more at https://deno.land/manual/examples/module_metadata#concepts
-// if (import.meta.main) {
-//   // console.log("Add 2 + 3 =", add(2, 3));
-//   console.log("Add 2 + 3 =", secondary(22, 3));
-// }
+      if (apiType === "vrp") {
+        try {
+          validData = await schemaVrp.validate(data, { strict: true });
+        } catch (e) {
+          console.log(e, "Error validation logisticsosClient VRP apiType");
+        }
+      }
+      if (apiType === "ondemand") {
+        try {
+          validData = await schemaOnDemand.validate(data, { strict: true });
+        } catch (e) {
+          console.log(e, "Error validation logisticsosClient OnDemand apiType");
+        }
+      }
+      if (apiType === "tsp") {
+        try {
+          validData = await schemaTSP.validate(data, { strict: true });
+        } catch (e) {
+          console.log(e, "Error validation logisticsosClient OnDemand apiType");
+        }
+      }
+      if(validData) {
+        try {
+          const solverResData = await solverHandlerMutation(validData, apiType, apiKey);
+          return solverResData;
+        } catch(e) {
+          console.log(e, "Error to make an Request to solver service")
+        }
+      }
+      return validData;
+    },
+    calculateRoutes: async (apiType: string) => {
+      if (apiType === "routing") {
+        return {
+          message: "Routing not implemented yet",
+        };
+      }
+      if (apiType === "matrix-routing") {
+        return {
+          message: "Matrix-routing not implemented yet",
+        };
+      }
+      if (apiType === "map-matching") {
+        return {
+          message: "Map-matching not implemented yet",
+        };
+      }
+    },
+  };
+};

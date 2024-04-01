@@ -1,0 +1,661 @@
+{
+    "current_routes": [
+      {
+        "vehicle": {
+          "id": "4640",
+          "profile": "ltlA",
+          "capacity": [
+            12.0,
+            11000.0
+          ],
+          "dispatch_after": 778.0,
+          "max_late_time": 0.0,
+          "max_orders_per_route": 100,
+          "max_waypoints_per_route": 8,
+          "capabilities": [
+            "TG",
+            "HB",
+            "DT",
+            "AH",
+            "79H",
+            "85H",
+            "89H",
+            "18L",
+            "24L",
+            "20L",
+            "HDT",
+            "S1500"
+          ],
+          "cost_params": {
+            "cost_per_unit_time": 0.42,
+            "cost_per_unit_distance": 0.95
+          }
+        },
+        "stops": [
+          {
+            "id": "4640start",
+            "type": "start_depot",
+            "lock_vehicle": false,
+            "geometry": {
+              "lat": 43.6541653,
+              "lon": -79.6519569
+            },
+            "time_window": {
+              "start": 778.0,
+              "end": 778.0
+            },
+            "max_adjacent_distance": 30.0
+          },
+          {
+            "id": "4640end",
+            "type": "end_depot",
+            "lock_vehicle": false,
+            "geometry": {
+              "lat": 43.5687833901349,
+              "lon": -79.6337688805693
+            },
+            "time_window": {
+              "start": 960.0,
+              "end": 1200.0
+            }
+          }
+        ],
+        "lock_first_n_orders": 0
+      }
+    ],
+    "orders": [
+      {
+        "id": "pick_9408348",
+        "geometry": {
+          "lat": 43.532,
+          "lon": -79.7188
+        },
+        "service": {
+          "pickup_quantities": [
+            4.0,
+            1050.0
+          ],
+          "duration": 15.0
+        },
+        "time_window": {
+          "start": 772.0,
+          "end": 1020.0
+        },
+        "assignment_priority": 2,
+        "paired_order": "deliv_9408348",
+        "capabilities": [
+          "79H",
+          "18L"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "pick_9408358",
+        "geometry": {
+          "lat": 43.7565,
+          "lon": -79.7091
+        },
+        "service": {
+          "pickup_quantities": [
+            1.0,
+            441.0
+          ],
+          "duration": 9.0
+        },
+        "time_window": {
+          "start": 775.0,
+          "end": 960.0
+        },
+        "assignment_priority": 0,
+        "paired_order": "deliv_9408358",
+        "capabilities": [
+          "79H",
+          "18L"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "pick_9408240",
+        "geometry": {
+          "lat": 43.5223,
+          "lon": -79.7073
+        },
+        "service": {
+          "pickup_quantities": [
+            1.0,
+            1700.0
+          ],
+          "duration": 10.0
+        },
+        "time_window": {
+          "start": 716.0,
+          "end": 1020.0
+        },
+        "assignment_priority": 1,
+        "paired_order": "deliv_9408240",
+        "capabilities": [
+          "DT",
+          "79H",
+          "18L",
+          "S1500"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "pick_9408202",
+        "geometry": {
+          "lat": 43.7472,
+          "lon": -79.7042
+        },
+        "service": {
+          "pickup_quantities": [
+            1.0,
+            94.0
+          ],
+          "duration": 26.0
+        },
+        "time_window": {
+          "start": 706.0,
+          "end": 1020.0
+        },
+        "assignment_priority": 0,
+        "paired_order": "deliv_9408202",
+        "capabilities": [
+          "79H",
+          "18L"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "pick_9398551",
+        "geometry": {
+          "lat": 43.5188,
+          "lon": -79.7025
+        },
+        "service": {
+          "pickup_quantities": [
+            6.0,
+            8928.0
+          ],
+          "duration": 17.0
+        },
+        "time_window": {
+          "start": 495.0,
+          "end": 1020.0
+        },
+        "assignment_priority": 1,
+        "paired_order": "deliv_9398551",
+        "capabilities": [
+          "79H",
+          "18L"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "deliv_9408358",
+        "geometry": {
+          "lat": 43.5188,
+          "lon": -79.7025
+        },
+        "service": {
+          "dropoff_quantities": [
+            1.0,
+            441.0
+          ],
+          "duration": 12.0
+        },
+        "time_window": {
+          "start": 0.0,
+          "end": 880.0
+        },
+        "assignment_priority": 0,
+        "paired_order": "pick_9408358",
+        "capabilities": [
+          "79H",
+          "18L"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "deliv_9398551",
+        "geometry": {
+          "lat": 43.7799,
+          "lon": -79.6463
+        },
+        "service": {
+          "dropoff_quantities": [
+            6.0,
+            8928.0
+          ],
+          "duration": 57.0
+        },
+        "time_window": {
+          "start": 955.0,
+          "end": 970.0
+        },
+        "assignment_priority": 1,
+        "paired_order": "pick_9398551",
+        "capabilities": [
+          "79H",
+          "18L"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "deliv_9408311",
+        "geometry": {
+          "lat": 43.7594,
+          "lon": -79.6362
+        },
+        "service": {
+          "dropoff_quantities": [
+            1.0,
+            385.0
+          ],
+          "duration": 16.0
+        },
+        "time_window": {
+          "start": 0.0,
+          "end": 1065.0
+        },
+        "assignment_priority": 2,
+        "paired_order": "pick_9408311",
+        "capabilities": [
+          "79H",
+          "18L"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "deliv_9408348",
+        "geometry": {
+          "lat": 43.632,
+          "lon": -79.634
+        },
+        "service": {
+          "dropoff_quantities": [
+            4.0,
+            1050.0
+          ],
+          "duration": 17.0
+        },
+        "time_window": {
+          "start": 0.0,
+          "end": 1065.0
+        },
+        "assignment_priority": 2,
+        "paired_order": "pick_9408348",
+        "capabilities": [
+          "79H",
+          "18L"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "deliv_9407934",
+        "geometry": {
+          "lat": 43.6665,
+          "lon": -79.6321
+        },
+        "service": {
+          "dropoff_quantities": [
+            1.0,
+            383.0
+          ],
+          "duration": 15.0
+        },
+        "time_window": {
+          "start": 0.0,
+          "end": 945.0
+        },
+        "assignment_priority": 0,
+        "paired_order": "pick_9407934",
+        "capabilities": [
+          "79H",
+          "18L"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "pick_9407934",
+        "geometry": {
+          "lat": 43.691,
+          "lon": -79.6188
+        },
+        "service": {
+          "pickup_quantities": [
+            1.0,
+            383.0
+          ],
+          "duration": 15.0
+        },
+        "time_window": {
+          "start": 840.0,
+          "end": 960.0
+        },
+        "assignment_priority": 0,
+        "paired_order": "deliv_9407934",
+        "capabilities": [
+          "79H",
+          "18L"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "pick_9407778",
+        "geometry": {
+          "lat": 44.0784,
+          "lon": -79.4299
+        },
+        "service": {
+          "pickup_quantities": [
+            3.0,
+            4600.0
+          ],
+          "duration": 9.0
+        },
+        "time_window": {
+          "start": 628.0,
+          "end": 1020.0
+        },
+        "assignment_priority": 2,
+        "paired_order": "deliv_9407778",
+        "capabilities": [
+          "79H",
+          "18L",
+          "S1500"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "deliv_9408202",
+        "geometry": {
+          "lat": 44.0813,
+          "lon": -79.4259
+        },
+        "service": {
+          "dropoff_quantities": [
+            1.0,
+            94.0
+          ],
+          "duration": 10.0
+        },
+        "time_window": {
+          "start": 0.0,
+          "end": 915.0
+        },
+        "assignment_priority": 0,
+        "paired_order": "pick_9408202",
+        "capabilities": [
+          "79H",
+          "18L"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "pick_9408311",
+        "geometry": {
+          "lat": 44.074,
+          "lon": -79.4242
+        },
+        "service": {
+          "pickup_quantities": [
+            1.0,
+            385.0
+          ],
+          "duration": 8.0
+        },
+        "time_window": {
+          "start": 752.0,
+          "end": 990.0
+        },
+        "assignment_priority": 2,
+        "paired_order": "deliv_9408311",
+        "capabilities": [
+          "79H",
+          "18L"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "pick_9407181",
+        "geometry": {
+          "lat": 44.0819,
+          "lon": -79.4236
+        },
+        "service": {
+          "pickup_quantities": [
+            4.0,
+            8000.0
+          ],
+          "duration": 15.0
+        },
+        "time_window": {
+          "start": 840.0,
+          "end": 1020.0
+        },
+        "assignment_priority": 0,
+        "sequence_priority": 1,
+        "paired_order": "deliv_9407181",
+        "cluster_label": "Ret_9407181",
+        "capabilities": [
+          "18L",
+          "79H"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "deliv_9407182",
+        "geometry": {
+          "lat": 44.0819,
+          "lon": -79.4236
+        },
+        "service": {
+          "dropoff_quantities": [
+            4.0,
+            8000.0
+          ],
+          "duration": 15.0
+        },
+        "time_window": {
+          "start": 0.0,
+          "end": 1125.0
+        },
+        "assignment_priority": 0,
+        "sequence_priority": 4,
+        "paired_order": "pick_9407182",
+        "cluster_label": "Ret_9407181",
+        "capabilities": [
+          "18L",
+          "79H"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "deliv_9408280",
+        "geometry": {
+          "lat": 44.0807,
+          "lon": -79.4229
+        },
+        "service": {
+          "dropoff_quantities": [
+            5.0,
+            8330.0
+          ],
+          "duration": 10.0
+        },
+        "time_window": {
+          "start": 0.0,
+          "end": 961.0
+        },
+        "assignment_priority": 0,
+        "paired_order": "pick_9408280",
+        "capabilities": [
+          "79H",
+          "18L",
+          "S1500"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "deliv_9407778",
+        "geometry": {
+          "lat": 43.7094,
+          "lon": -79.3431
+        },
+        "service": {
+          "dropoff_quantities": [
+            3.0,
+            4600.0
+          ],
+          "duration": 10.0
+        },
+        "time_window": {
+          "start": 0.0,
+          "end": 1005.0
+        },
+        "assignment_priority": 2,
+        "paired_order": "pick_9407778",
+        "capabilities": [
+          "79H",
+          "18L",
+          "S1500"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "deliv_9408240",
+        "geometry": {
+          "lat": 43.6988,
+          "lon": -79.2682
+        },
+        "service": {
+          "dropoff_quantities": [
+            1.0,
+            1700.0
+          ],
+          "duration": 14.0
+        },
+        "time_window": {
+          "start": 0.0,
+          "end": 1001.0
+        },
+        "assignment_priority": 1,
+        "paired_order": "pick_9408240",
+        "capabilities": [
+          "DT",
+          "79H",
+          "18L",
+          "S1500"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "pick_9407182",
+        "geometry": {
+          "lat": 44.0831,
+          "lon": -79.1553
+        },
+        "service": {
+          "pickup_quantities": [
+            4.0,
+            8000.0
+          ],
+          "duration": 13.0
+        },
+        "time_window": {
+          "start": 900.0,
+          "end": 1200.0
+        },
+        "assignment_priority": 0,
+        "sequence_priority": 3,
+        "paired_order": "deliv_9407182",
+        "cluster_label": "Ret_9407181",
+        "capabilities": [
+          "18L",
+          "79H"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "pick_9408280",
+        "geometry": {
+          "lat": 44.0831,
+          "lon": -79.1553
+        },
+        "service": {
+          "pickup_quantities": [
+            5.0,
+            8330.0
+          ],
+          "duration": 13.0
+        },
+        "time_window": {
+          "start": 736.0,
+          "end": 1200.0
+        },
+        "assignment_priority": 0,
+        "paired_order": "deliv_9408280",
+        "capabilities": [
+          "79H",
+          "18L",
+          "S1500"
+        ],
+        "disallowed_vehicles": []
+      },
+      {
+        "id": "deliv_9407181",
+        "geometry": {
+          "lat": 44.0831,
+          "lon": -79.1553
+        },
+        "service": {
+          "dropoff_quantities": [
+            4.0,
+            8000.0
+          ],
+          "duration": 13.0
+        },
+        "time_window": {
+          "start": 0.0,
+          "end": 1005.0
+        },
+        "assignment_priority": 0,
+        "sequence_priority": 2,
+        "paired_order": "pick_9407181",
+        "cluster_label": "Ret_9407181",
+        "capabilities": [
+          "18L",
+          "79H"
+        ],
+        "disallowed_vehicles": []
+      }
+    ],
+    "routing_profiles": [
+      {
+        "name": "ltlA",
+        "base_profile": "car",
+        "speed_factor": 0.8
+      },
+      {
+        "name": "ltlB",
+        "base_profile": "car",
+        "speed_factor": 0.68
+      },
+      {
+        "name": "ltlC",
+        "base_profile": "car",
+        "speed_factor": 0.56
+      }
+    ],
+    "solver_parameters": {
+      "map_provider": "tomtom",
+      "traffic_time": "2023-09-15T12:00:00-05:00",
+      "avoid_tolls": true,
+      "exhaustive_search": true
+    },
+    "units": {
+      "distance": "kilometer",
+      "duration": "minute"
+    }
+  }

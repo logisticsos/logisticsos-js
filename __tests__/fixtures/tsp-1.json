@@ -1,0 +1,178 @@
+{
+  "vehicle": {
+    "id": "Hassan",
+    "profile": "bicycle",
+    "capacity": 4,
+    "dispatch_after": 500,
+    "dismiss_before": 720,
+    "max_distance": 30,
+    "max_travel_time": 100,
+    "max_total_time": 120,
+    "max_late_time": 30,
+    "avoid_wait_time": false,
+    "cost_params": {
+      "cost_per_unit_time": 1,
+      "cost_per_unit_distance": 1
+    }
+  },
+  "orders": [
+    {
+      "id": "gammelkogevej55-pickup",
+      "geometry": {
+        "lon": 12.5140799,
+        "lat": 55.6575008
+      },
+      "service": {
+        "pickup_quantities": 1,
+        "dropoff_quantities": 0
+      },
+      "time_window": {
+        "start": 600
+      },
+      "paired_order": "oesterbrogade1-dropoff"
+    },
+    {
+      "id": "thaikindi-pickup",
+      "geometry": {
+        "lon": 12.51905796387448,
+        "lat": 55.66218906568756
+      },
+      "service": {
+        "pickup_quantities": 1,
+        "dropoff_quantities": 0
+      },
+      "time_window": {
+        "start": 600
+      },
+      "paired_order": "valbylanggade12-dropoff"
+    },
+    {
+      "id": "finsensvej12-dropoff",
+      "geometry": {
+        "lon": 12.519902356982914,
+        "lat": 55.6815501187532
+      },
+      "service": {
+        "pickup_quantities": 0,
+        "dropoff_quantities": 1
+      },
+      "time_window": {
+        "end": 630
+      },
+      "paired_order": "burgerklubbenfrb-pickup"
+    },
+    {
+      "id": "valbylanggade12-dropoff",
+      "geometry": {
+        "lon": 12.521117900414259,
+        "lat": 55.66664295627967
+      },
+      "service": {
+        "pickup_quantities": 0,
+        "dropoff_quantities": 1
+      },
+      "time_window": {
+        "end": 630
+      },
+      "paired_order": "thaikindi-pickup"
+    },
+    {
+      "id": "burgerklubbenfrb-pickup",
+      "geometry": {
+        "lon": 12.53071223694287,
+        "lat": 55.679557459772816
+      },
+      "service": {
+        "pickup_quantities": 1,
+        "dropoff_quantities": 0
+      },
+      "time_window": {
+        "start": 600
+      },
+      "paired_order": "finsensvej12-dropoff"
+    },
+    {
+      "id": "trommesalen-dropoff",
+      "geometry": {
+        "lon": 12.560788725808484,
+        "lat": 55.67393598085826
+      },
+      "service": {
+        "pickup_quantities": 0,
+        "dropoff_quantities": 1
+      },
+      "time_window": {
+        "end": 630
+      },
+      "paired_order": "amagerbrogade105-pickup"
+    },
+    {
+      "id": "robertjacobsensvej-dropoff",
+      "geometry": {
+        "lon": 12.573046025806851,
+        "lat": 55.620407004706585
+      },
+      "service": {
+        "pickup_quantities": 0,
+        "dropoff_quantities": 1
+      },
+      "time_window": {
+        "end": 630
+      },
+      "paired_order": "amagerbrogade44-pickup"
+    },
+    {
+      "id": "oesterbrogade1-dropoff",
+      "geometry": {
+        "lon": 12.5784561,
+        "lat": 55.6980186
+      },
+      "service": {
+        "pickup_quantities": 0,
+        "dropoff_quantities": 1
+      },
+      "time_window": {
+        "end": 630
+      },
+      "paired_order": "gammelkogevej55-pickup"
+    },
+    {
+      "id": "amagerbrogade44-pickup",
+      "geometry": {
+        "lon": 12.60099346998889,
+        "lat": 55.66363651925468
+      },
+      "service": {
+        "pickup_quantities": 1,
+        "dropoff_quantities": 0
+      },
+      "time_window": {
+        "start": 600
+      },
+      "paired_order": "robertjacobsensvej-dropoff"
+    },
+    {
+      "id": "amagerbrogade105-pickup",
+      "geometry": {
+        "lon": 12.607497241152602,
+        "lat": 55.65884643229968
+      },
+      "service": {
+        "pickup_quantities": 1,
+        "dropoff_quantities": 0
+      },
+      "time_window": {
+        "start": 600
+      },
+      "paired_order": "trommesalen-dropoff"
+    }
+  ],
+  "solver_parameters": {
+    "map_provider": "osm",
+    "snap_distance": 1
+  },
+  "units": {
+    "duration": "minute",
+    "distance": "kilometer"
+  }
+}

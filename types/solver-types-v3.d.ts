@@ -255,7 +255,7 @@ export interface components {
        * @deprecated
        * @description ~~Specify customized routing profiles.~~ This feature is deprecated, please use `average_speed` or `speed_factor` in `vehicle_types`.
        */
-      routing_profiles?: components["schemas"]["RoutingProfile"][];
+      // routing_profiles?: components["schemas"]["RoutingProfile"][];
       /** @description Specify polygon restrictions for vehicles. */
       polygons?: components["schemas"]["PolygonRestriction"][];
       solver_parameters?: components["schemas"]["SolverParamsVrp"];
@@ -616,16 +616,16 @@ export interface components {
        * @deprecated
        * @description ~~Specify customized routing profile.~~ This feature is deprecated, please use `average_speed` or `speed_factor` in `vehicle`.
        */
-      routing_profile?: {
-        /** @description name of the routing profile. */
-        name: string;
-        /** @description Specify a base profile from the default list, `[bicycle, car]`. Different base profile has different routing restrictions. */
-        base_profile: string;
-        /** @description Specify an average speed for this routing profile. A speed factor will be derived and applied to the distance matrix. Cannot be used together with `speed_factor`. */
-        average_speed?: number;
-        /** @description Specify a speed factor for this routing profile. It will be applied to the distance matrix. Cannot be used together with `average_speed`. */
-        speed_factor?: number;
-      };
+      // routing_profile?: {
+      //   /** @description name of the routing profile. */
+      //   name: string;
+      //   /** @description Specify a base profile from the default list, `[bicycle, car]`. Different base profile has different routing restrictions. */
+      //   base_profile: string;
+      //   /** @description Specify an average speed for this routing profile. A speed factor will be derived and applied to the distance matrix. Cannot be used together with `speed_factor`. */
+      //   average_speed?: number;
+      //   /** @description Specify a speed factor for this routing profile. It will be applied to the distance matrix. Cannot be used together with `average_speed`. */
+      //   speed_factor?: number;
+      // };
       solver_parameters?: components["schemas"]["SolverParamsTsp"];
       units: components["schemas"]["Units"];
       /** @description Define array of tags associated with this requests, which will be returned as-is in response. */
