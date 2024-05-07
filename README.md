@@ -10,3 +10,5 @@ deno url: `https://deno.land/x/logisticsos_js`
 ### Helpers
 
 generate types from swagger docs - `npx openapi-typescript https://los-ops-pub.s3.us-west-2.amazonaws.com/api_reference/swagger-v3.json -o ./solver-types-v3.d.ts`;
+
+### Development
