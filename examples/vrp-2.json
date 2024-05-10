@@ -1,0 +1,167 @@
+{
+    "orders": [
+      {
+        "id": "0_pickup",
+        "geometry": { "lat": 40.7542747495483, "lon": -73.99031326826211 },
+        "time_window": { "start": 27 },
+        "service": {
+          "pickup_quantities": 1,
+          "dropoff_quantities": 0,
+          "duration": 5
+        },
+        "paired_order": "0_dropoff"
+      },
+      {
+        "id": "0_dropoff",
+        "geometry": { "lat": 40.75441808009259, "lon": -73.99256397690277 },
+        "time_window": { "end": 57 },
+        "service": { "pickup_quantities": 0, "dropoff_quantities": 1 },
+        "paired_order": "0_pickup"
+      },
+      {
+        "id": "1_pickup",
+        "geometry": { "lat": 40.75425907538937, "lon": -73.9902763040691 },
+        "time_window": { "start": 14 },
+        "service": {
+          "pickup_quantities": 1,
+          "dropoff_quantities": 0,
+          "duration": 5
+        },
+        "paired_order": "1_dropoff"
+      },
+      {
+        "id": "1_dropoff",
+        "geometry": { "lat": 40.73919377789795, "lon": -74.00073021370952 },
+        "time_window": { "end": 44 },
+        "service": { "pickup_quantities": 0, "dropoff_quantities": 1 },
+        "paired_order": "1_pickup"
+      },
+      {
+        "id": "2_pickup",
+        "geometry": { "lat": 40.7542747495483, "lon": -73.99031326826211 },
+        "time_window": { "start": 16 },
+        "service": {
+          "pickup_quantities": 1,
+          "dropoff_quantities": 0,
+          "duration": 5
+        },
+        "paired_order": "2_dropoff"
+      },
+      {
+        "id": "2_dropoff",
+        "geometry": { "lat": 40.7159643809851, "lon": -74.00356715265828 },
+        "time_window": { "end": 46 },
+        "service": { "pickup_quantities": 0, "dropoff_quantities": 1 },
+        "paired_order": "2_pickup"
+      },
+      {
+        "id": "3_pickup",
+        "geometry": { "lat": 40.7542747495483, "lon": -73.99031326826211 },
+        "time_window": { "start": 9 },
+        "service": {
+          "pickup_quantities": 1,
+          "dropoff_quantities": 0,
+          "duration": 5
+        },
+        "paired_order": "3_dropoff"
+      },
+      {
+        "id": "3_dropoff",
+        "geometry": { "lat": 40.749450670904224, "lon": -73.98270350600718 },
+        "time_window": { "end": 39 },
+        "service": { "pickup_quantities": 0, "dropoff_quantities": 1 },
+        "paired_order": "3_pickup"
+      },
+      {
+        "id": "4_pickup",
+        "geometry": { "lat": 40.7542747495483, "lon": -73.99031326826211 },
+        "time_window": { "start": 4 },
+        "service": {
+          "pickup_quantities": 1,
+          "dropoff_quantities": 0,
+          "duration": 5
+        },
+        "paired_order": "4_dropoff"
+      },
+      {
+        "id": "4_dropoff",
+        "geometry": { "lat": 40.737580638722335, "lon": -73.98064532968246 },
+        "time_window": { "end": 34 },
+        "service": { "pickup_quantities": 0, "dropoff_quantities": 1 },
+        "paired_order": "4_pickup"
+      },
+      {
+        "id": "5_pickup",
+        "geometry": { "lat": 40.75425907538937, "lon": -73.9902763040691 },
+        "time_window": { "start": 17 },
+        "service": {
+          "pickup_quantities": 1,
+          "dropoff_quantities": 0,
+          "duration": 5
+        },
+        "paired_order": "5_dropoff"
+      },
+      {
+        "id": "5_dropoff",
+        "geometry": { "lat": 40.76677384356353, "lon": -73.9560551726986 },
+        "time_window": { "end": 47 },
+        "service": { "pickup_quantities": 0, "dropoff_quantities": 1 },
+        "paired_order": "5_pickup"
+      }
+    ],
+    "vehicle_types": [
+      {
+        "id": "1",
+        "profile": "car",
+        "count": 1000,
+        "cost_params": {
+          "fixed_cost": 120,
+          "cost_per_unit_time": 0.0001,
+          "cost_per_unit_overtime": 0.0003,
+          "cost_per_unit_overdistance": 0.0004
+        },
+        "use_all_vehicles": false,
+        "max_orders_per_route": 1000,
+        "max_distance": 1000,
+        "max_total_time": 360,
+        "overtime_start": 120,
+        "overdistance_start": 0.0001
+      },
+      {
+        "id": "2",
+        "profile": "car",
+        "count": 1000,
+        "cost_params": {
+          "fixed_cost": 60,
+          "cost_per_unit_time": 0.0001,
+          "cost_per_unit_overtime": 30,
+          "cost_per_unit_overdistance": 0.0004
+        },
+        "use_all_vehicles": false,
+        "max_orders_per_route": 1000,
+        "max_distance": 10,
+        "max_total_time": 420,
+        "overtime_start": 120,
+        "overdistance_start": 0.0001
+      },
+      {
+        "id": "3",
+        "profile": "car",
+        "count": 1000,
+        "cost_params": {
+          "fixed_cost": 4.75,
+          "cost_per_unit_time": 0.0001,
+          "cost_per_unit_overtime": 30,
+          "cost_per_unit_overdistance": 0.0004
+        },
+        "use_all_vehicles": false,
+        "max_orders_per_route": 1,
+        "max_distance": 3,
+        "max_total_time": 120,
+        "overdistance_start": 0.0001
+      }
+    ],
+    "routing_profiles": [],
+    "solver_parameters": { "map_provider": "osm", "exhaustive_search": false },
+    "units": { "distance": "mile", "duration": "minute" }
+  }
