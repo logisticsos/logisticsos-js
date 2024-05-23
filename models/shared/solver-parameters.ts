@@ -1,5 +1,5 @@
 import * as yup from "https://cdn.skypack.dev/yup?dts";
-import typeV3new from '../../types/solver-types-v3.d.ts';
+import typeV3new from "../../types/solver-types-v3.d.ts";
 
 type ISolverParamsOnDemand =
   typeV3new.components["schemas"]["SolverParamsOnDemand"];
@@ -13,6 +13,7 @@ const solverParametersSchema: yup.ObjectSchema<ISolverParamsOnDemand> =
       .default("osm"),
     traffic_time: yup.string(),
     snap_distance: yup.number(),
+    search_level: yup.number(),
     exhaustive_search: yup.boolean(),
     avoid_tolls: yup.boolean(),
     soft_capabilities: yup
@@ -36,6 +37,11 @@ const solverParametersVrpSchema: yup.ObjectSchema<ISolverParamsVrp> = yup
     exhaustive_search: yup.boolean(),
     high_quality_cluster: yup.boolean(),
     balance_routes: yup.boolean(),
+    search_level: yup.number(),
+    clustering_level: yup.number(),
+    renewal_type: yup
+      .mixed<"travel" | "service">()
+      .oneOf(["travel", "service"]),
     soft_cluster_label: yup.boolean(),
     soft_capabilities: yup
       .array()

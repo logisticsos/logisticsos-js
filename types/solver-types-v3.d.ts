@@ -96,16 +96,29 @@ export interface components {
        */
       curb?: boolean;
     };
-    Service: {
-      /** @description The size of the pickup. This property can also be specified in multiple dimensions (up to 4) with an array, such as weight, volume, and quantity. */
-      pickup_quantities?: number | number[];
-      /** @description The size of the delivery. This property can also be specified in multiple dimensions (up to 4) with an array, such as weight, volume, and quantity. */
-      dropoff_quantities?: number | number[];
+    ServiceNoConsumption: {
       /**
        * @description The amount of time driver spends at this order.
        * @default 0
        */
       duration?: number;
+      /** @description The size of the pickup. This property can also be specified in multiple dimensions (up to 4) with an array, such as weight, volume, and quantity. */
+      pickup_quantities?: number | number[];
+      /** @description The size of the delivery. This property can also be specified in multiple dimensions (up to 4) with an array, such as weight, volume, and quantity. */
+      dropoff_quantities?: number | number[];
+    };
+    Service: {
+      /**
+       * @description The amount of time driver spends at this order.
+       * @default 0
+       */
+      duration?: number;
+      /** @description The size of the pickup. This property can also be specified in multiple dimensions (up to 4) with an array, such as weight, volume, and quantity. */
+      pickup_quantities?: number | number[];
+      /** @description The size of the delivery. This property can also be specified in multiple dimensions (up to 4) with an array, such as weight, volume, and quantity. */
+      dropoff_quantities?: number | number[];
+      /** @description Consumption of vehicle's renewal capacity. This property can be either an integer or an array for multi-dimensions (up to 2) use case. */
+      consumption?: number | number[];
     };
     TimeWindow: {
       /**
@@ -249,13 +262,15 @@ export interface components {
       end_depots?: components["schemas"]["Depot"][];
       /** @description Specify any rest periods, or breaks, for all the routes in a given vehicle routing problem. */
       breaks?: components["schemas"]["Break"][];
+      /** @description Specify renewal locations for vehicles to renew capacities. */
+      renewals?: components["schemas"]["Renewal"][];
       /** @description Specify groups of available vehicles. */
       vehicle_types: components["schemas"]["VehicleType"][];
       /**
        * @deprecated
        * @description ~~Specify customized routing profiles.~~ This feature is deprecated, please use `average_speed` or `speed_factor` in `vehicle_types`.
        */
-      // routing_profiles?: components["schemas"]["RoutingProfile"][];
+      routing_profiles?: components["schemas"]["RoutingProfile"][];
       /** @description Specify polygon restrictions for vehicles. */
       polygons?: components["schemas"]["PolygonRestriction"][];
       solver_parameters?: components["schemas"]["SolverParamsVrp"];
@@ -376,9 +391,21 @@ export interface components {
     Break: {
       /** @description e.g "lunch_break". */
       id: string;
-      time_window: components["schemas"]["TimeWindowBreak"];
       /** @description Specify the amount of time for this rest period or break. */
       duration: number;
+      /** @description Specify the max consecutive working time without the break. */
+      max_working_time?: number;
+      time_window?: components["schemas"]["TimeWindowBreak"];
+    };
+    Renewal: {
+      /** @description id of this renewal location. */
+      id: string;
+      geometry: components["schemas"]["Geometry"];
+      /**
+       * @description Specify the amount of time for vehicle to renew its capacity at this location.
+       * @default 0
+       */
+      duration?: number;
     };
     /** @description Specify cost parameters for this vehicle type. */
     CostParamsVrp: {
@@ -441,6 +468,20 @@ export interface components {
        * @default inf
        */
       overdistance_start?: number;
+    };
+    RenewalParamsService: {
+      /** @description Service type renewal capacity. */
+      capacity: number | number[];
+      /** @description Consumption of vehicle's renewal capacity per order. This property can be either an integer or an array for multi-dimensions (up to 2) use case. */
+      consumption_per_order?: number | number[];
+    };
+    RenewalParamsTravel: {
+      /** @description Travel type renewal capacity. At least one of `consumption_per_unit_distance` and `consumption_per_unit_duration` must be provided. */
+      capacity: number;
+      /** @description Consumption of vehicle's renewal capacity per unit distance. */
+      consumption_per_unit_distance?: number;
+      /** @description Consumption of vehicle's renewal capacity per unit duration, travel time only, i.e., excluding wait time and service time. */
+      consumption_per_unit_duration?: number;
     };
     VehicleType: {
       /** @description User input descriptor for this type of vehicle (e.g Minivan). */
@@ -506,11 +547,17 @@ export interface components {
       /** @description Maximum size of accumulated dropoff for the workday. */
       max_dropoff_quantities?: number | number[];
       /**
-       * @description Maximum number of orders the vehicle can visit for the workday. Default is `100`. `Warning: lifting this constraint will significantly affect the performance.`
+       * @description Maximum number of orders the vehicle can service per trip. Default is `100`. `Warning: lifting this constraint will significantly affect the performance.`
        *
        * @default 100
        */
       max_orders_per_route?: number;
+      /**
+       * @description Minimum number of orders the vehicle can service per trip. Note this is a soft constraint, solver will try hard to respect this constraint if possible, however, total cost may increase.
+       *
+       * @default 0
+       */
+      min_orders_per_route?: number;
       /**
        * @description Maximum number of waypoints, defined as unique (lat, lon, timepoint), the vehicle can visit for the workday.
        *
@@ -547,6 +594,8 @@ export interface components {
       /** @description Only assign orders outside the specified polygons to this vehicle type. */
       disallowed_polygons?: string[];
       cost_params?: components["schemas"]["CostParamsVrp"];
+      /** @description Renewals related parameters. */
+      renewal_params?: components["schemas"]["RenewalParamsService"] | components["schemas"]["RenewalParamsTravel"];
     };
     SolverParamsVrp: {
       map_provider?: components["schemas"]["MapProviderAllowHere"];
@@ -603,6 +652,12 @@ export interface components {
       soft_cluster_label?: boolean;
       /** @description Capabilities are hard constraints by default. However, you can specify them here to be soft constraints, i.e., it can be dropped when no matching vehicle can be found. */
       soft_capabilities?: string[][];
+      /**
+       * @description Specify the renewal type, consumption will have different meanings depending on this value. For example, when set to `travel`, consumption is based on travel distance and duration. A common use case is EV charging, where the renewal capacity corresponds to the battery capacity, and consumption is based on travel distance. If set to `service`, consumption will occur on a per-order basis. A typical scenario is waste collection, where the vehicle will dump at renewal points when its capacity is fully consumed.
+       *
+       * @enum {string}
+       */
+      renewal_type?: "travel" | "service";
     };
     TspRequest: {
       /** @description Specify new orders to be assigned. */
@@ -612,20 +667,22 @@ export interface components {
       end_depot?: components["schemas"]["Depot"];
       /** @description Specify any rest periods, or breaks, for all the routes in a given vehicle routing problem. */
       breaks?: components["schemas"]["Break"][];
+      /** @description Specify renewal locations for vehicles to renew capacities. */
+      renewals?: components["schemas"]["Renewal"][];
       /**
        * @deprecated
        * @description ~~Specify customized routing profile.~~ This feature is deprecated, please use `average_speed` or `speed_factor` in `vehicle`.
        */
-      // routing_profile?: {
-      //   /** @description name of the routing profile. */
-      //   name: string;
-      //   /** @description Specify a base profile from the default list, `[bicycle, car]`. Different base profile has different routing restrictions. */
-      //   base_profile: string;
-      //   /** @description Specify an average speed for this routing profile. A speed factor will be derived and applied to the distance matrix. Cannot be used together with `speed_factor`. */
-      //   average_speed?: number;
-      //   /** @description Specify a speed factor for this routing profile. It will be applied to the distance matrix. Cannot be used together with `average_speed`. */
-      //   speed_factor?: number;
-      // };
+      routing_profile?: {
+        /** @description name of the routing profile. */
+        name: string;
+        /** @description Specify a base profile from the default list, `[bicycle, car]`. Different base profile has different routing restrictions. */
+        base_profile: string;
+        /** @description Specify an average speed for this routing profile. A speed factor will be derived and applied to the distance matrix. Cannot be used together with `speed_factor`. */
+        average_speed?: number;
+        /** @description Specify a speed factor for this routing profile. It will be applied to the distance matrix. Cannot be used together with `average_speed`. */
+        speed_factor?: number;
+      };
       solver_parameters?: components["schemas"]["SolverParamsTsp"];
       units: components["schemas"]["Units"];
       /** @description Define array of tags associated with this requests, which will be returned as-is in response. */
@@ -732,6 +789,8 @@ export interface components {
        */
       avoid_wait_time?: boolean;
       cost_params?: components["schemas"]["CostParamsTsp"];
+      /** @description Renewals related parameters. */
+      renewal_params?: components["schemas"]["RenewalParamsService"] | components["schemas"]["RenewalParamsTravel"];
     };
     SolverParamsTsp: {
       map_provider?: components["schemas"]["MapProviderAllowHere"];
@@ -748,6 +807,12 @@ export interface components {
       snap_distance?: number;
       /** @default false */
       avoid_tolls?: boolean;
+      /**
+       * @description Specify the renewal type, consumption will have different meanings depending on this value. For example, when set to `travel`, consumption is based on travel distance and duration. A common use case is EV charging, where the renewal capacity corresponds to the battery capacity, and consumption is based on travel distance. If set to `service`, consumption will occur on a per-order basis. A typical scenario is waste collection, where the vehicle will dump at renewal points when its capacity is fully consumed.
+       *
+       * @enum {string}
+       */
+      renewal_type?: "travel" | "service";
     };
     OnDemandRequest: {
       /** @description Specify current routes that's already planned. */
@@ -770,7 +835,7 @@ export interface components {
       /** @description id of this order, has to be unique across all orders. */
       id: string;
       geometry: components["schemas"]["Geometry"];
-      service?: components["schemas"]["Service"];
+      service?: components["schemas"]["ServiceNoConsumption"];
       time_window?: components["schemas"]["TimeWindow"];
       /**
        * @description The parking time spent at this order. Orders with same location and delivered by same vehicle at the same time will share the same parking time, i.e., only applied once on first order. If vehicle also has a parking time, it will be added to order's parking time.
@@ -823,7 +888,7 @@ export interface components {
        */
       lock_vehicle?: boolean;
       geometry?: components["schemas"]["Geometry"];
-      service?: components["schemas"]["Service"];
+      service?: components["schemas"]["ServiceNoConsumption"];
       time_window?: components["schemas"]["TimeWindow"];
       /**
        * @description The parking time spent at this order. Orders with same location and delivered by same vehicle at the same time will share the same parking time, i.e., only applied once on first order. If vehicle also has a parking time, it will be added to order's parking time.
@@ -1019,6 +1084,12 @@ export interface components {
        * @default 100
        */
       max_orders_per_route?: number;
+      /**
+       * @description Minimum number of orders the vehicle can service per trip. Note this is a soft constraint, solver will try hard to respect this constraint if possible, however, total cost may increase.
+       *
+       * @default 0
+       */
+      min_orders_per_route?: number;
       /**
        * @description Maximum number of waypoints, defined as unique (lat, lon, timepoint), the vehicle can visit for the workday.
        *
