@@ -1,0 +1,94 @@
+{
+    "status": "SUCCEED",
+    "routes": [
+        {
+            "geometry": "aettG~__`Mx@n@DDCHw@zBCFGP@@vBfBZTLJFFBBtAfAj@d@JHfA|@JJDBDDFDDDFDBBzAlAl@d@BBBBHFJHB@z@p@TL\\PTJNJzBhADBJDERCDa@lAEJHHrBnBHHJHt@p@z@v@JJHHh@h@V\\??~BnEHPIJeAvAILHLDHZj@rB`EFLHOfAwAHIHKb@o@b@k@JOJOd@q@BCGK??????FJCBe@p@KN~@hB|@dBP\\BDFJFL@Bv@zAfAtB@DHLHPBBXh@b@x@r@tAJNFL\\p@j@fABFVb@JR@B@BHLMH}At@QJ[P]Pi@XC@MFKFMFk@Z]PCBMFMFm@ZiAl@C@KFGMIOQ_@",
+            "distance": 2373.8,
+            "duration": 388,
+            "legs": [
+                {
+                    "distance": 314.3,
+                    "duration": 49.4
+                },
+                {
+                    "distance": 666.1,
+                    "duration": 109.4
+                },
+                {
+                    "distance": 221.3,
+                    "duration": 40.7
+                },
+                {
+                    "distance": 291.3,
+                    "duration": 54.7
+                },
+                {
+                    "distance": 0,
+                    "duration": 0
+                },
+                {
+                    "distance": 880.8,
+                    "duration": 133.8
+                }
+            ]
+        }
+    ],
+    "waypoints": [
+        {
+            "distance": 18.988532840449746,
+            "name": "Rue Barré",
+            "location": {
+                "lat": 45.492169,
+                "lon": -73.56432
+            }
+        },
+        {
+            "distance": 1.2818134250791848,
+            "name": "Rue Notre-Dame Ouest",
+            "location": {
+                "lat": 45.490679,
+                "lon": -73.566697
+            }
+        },
+        {
+            "distance": 31.075944062023307,
+            "name": "Rue Workman",
+            "location": {
+                "lat": 45.486189,
+                "lon": -73.571236
+            }
+        },
+        {
+            "distance": 32.608191371114465,
+            "name": "Rue Delisle",
+            "location": {
+                "lat": 45.485731,
+                "lon": -73.573284
+            }
+        },
+        {
+            "distance": 4.092935203456256,
+            "name": "",
+            "location": {
+                "lat": 45.483949,
+                "lon": -73.572735
+            }
+        },
+        {
+            "distance": 4.092935203456256,
+            "name": "",
+            "location": {
+                "lat": 45.483949,
+                "lon": -73.572735
+            }
+        },
+        {
+            "distance": 20.50239141102817,
+            "name": "Rue Saint-Jacques",
+            "location": {
+                "lat": 45.484013,
+                "lon": -73.579161
+            }
+        }
+    ]
+}

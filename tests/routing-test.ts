@@ -17,7 +17,7 @@ const env = await load({export: true});
 
 
 const apiKeyLogisticsos = env.LOS_TEST_API_KEY;
-const responseSolver = await import("../examples/res-mtl-6stops-1route-126cost.json", {
+const responseSolver = await import("../examples/optimizations/res-mtl-6stops-1route-126cost.json", {
   with: { type: "json" },
 });
 
@@ -33,13 +33,9 @@ describe("End-to-end Fleet Manager First Route Plan", () => {
 
   it('Get routing for 1 route', async () => {
     assertEquals("match", "match");
-    console.log(initLogisticsos, "initLogisticsos")
+    const routingRes = await initLogisticsos.calculateRoutes({
+      locations: routeLocations
+    }, 'routing');
   });
 });
 
-/**
- * - get example response
- * - extract routes, and only locations
- * - call routing api
- * - receive valid data
- */
